@@ -1,5 +1,5 @@
 {
-  "Section2": {
+  "Section3": {
     "Name": "Name",
     "Limit": 123,
     "OptionItems": [
@@ -16,5 +16,10 @@
         "Value": "Value3"
       }
     ]
+  },
+  "Section4": {
+    "Name": "Name",
+    "Limit": 123,
+    "OptionItems": "[{ \"Id\": 1, \"Value\": \"Value1\" }, { \"Id\": 2, \"Value\": \"Value2\" }, { \"Id\": 3, \"Value\": \"Value3\" }]"
   }
 }

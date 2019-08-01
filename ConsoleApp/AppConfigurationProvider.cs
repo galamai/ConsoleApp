@@ -21,8 +21,26 @@ namespace ConsoleApp
                 var key = settingsKey.Replace(".", ":");
                 var value = appSettings[settingsKey];
 
-                Data.Add(key, value);
+                if (IsJsonValue(value))
+                {
+                    var keyValues = JsonConfigurationValueParser.Parse(value);
+
+                    foreach (var kv in keyValues)
+                    {
+                        Data.Add($"{key}:{kv.Key}", kv.Value);
+                    }
+                }
+                else
+                {
+                    Data.Add(key, value);
+                }
             }
+        }
+
+        private bool IsJsonValue(string value)
+        {
+            return (value.StartsWith("{") && value.EndsWith("}")) ||
+                (value.StartsWith("[") && value.EndsWith("]"));
         }
     }
 }
