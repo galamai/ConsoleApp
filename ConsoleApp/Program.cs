@@ -33,19 +33,22 @@ namespace ConsoleApp
             // 1
             services.Configure<RealOptionsAppConfig>(configuration.GetSection("Section1"));
             services.Configure<RealOptionsAppConfig2>(configuration.GetSection("Section2"));
-            services.Configure<RealOptionsAppSettings>(configuration.GetSection("Section3"));
-            services.Configure<RealOptionsAppSettings2>(configuration.GetSection("Section4"));
+            services.Configure<RealOptionsAppConfig3>(configuration.GetSection("Section3"));
+            services.Configure<RealOptionsAppSettings>(configuration.GetSection("Section4"));
+            services.Configure<RealOptionsAppSettings2>(configuration.GetSection("Section5"));
 
             // 2
             //services.AddOptions<RealOptionsAppConfig>().Configure<IConfiguration>((x, cfg) => cfg.GetSection("Section1").Bind(x));
             //services.AddOptions<RealOptionsAppConfig2>().Configure<IConfiguration>((x, cfg) => cfg.GetSection("Section2").Bind(x));
-            //services.AddOptions<RealOptionsAppSettings>().Configure<IConfiguration>((x, cfg) => cfg.GetSection("Section3").Bind(x));
+            //services.AddOptions<RealOptionsAppConfig3>().Configure<IConfiguration>((x, cfg) => cfg.GetSection("Section3").Bind(x));
             //services.AddOptions<RealOptionsAppSettings>().Configure<IConfiguration>((x, cfg) => cfg.GetSection("Section4").Bind(x));
+            //services.AddOptions<RealOptionsAppSettings>().Configure<IConfiguration>((x, cfg) => cfg.GetSection("Section5").Bind(x));
 
             using (var provider = services.BuildServiceProvider())
             {
                 var realOptionsAppConfig = provider.GetService<IOptionsSnapshot<RealOptionsAppConfig>>().Value;
                 var realOptionsAppConfig2 = provider.GetService<IOptionsSnapshot<RealOptionsAppConfig2>>().Value;
+                var realOptionsAppConfig3 = provider.GetService<IOptionsSnapshot<RealOptionsAppConfig3>>().Value;
 
                 var realOptionsAppSettings = provider.GetService<IOptionsSnapshot<RealOptionsAppSettings>>().Value;
                 var realOptionsAppSettings2 = provider.GetService<IOptionsSnapshot<RealOptionsAppSettings2>>().Value;
@@ -68,6 +71,11 @@ namespace ConsoleApp
         public string Name { get; set; }
         public int Limit { get; set; }
         public string OptionItems { get; set; }
+    }
+
+    class RealOptionsAppConfig3 : RealOptionsAppConfig
+    {
+
     }
 
     class RealOptionsAppSettings : RealOptionsAppConfig
